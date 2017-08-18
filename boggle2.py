@@ -1,6 +1,7 @@
 import random
 alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
+
 def boggle_checker(board, guess):
     """"Return true is guess is a word on the board"""
 
@@ -12,6 +13,8 @@ def boggle_checker(board, guess):
     for row in board:
         print(row)
 
+
+    """ Try turning this into a lambda function"""
     for x in range(len(board)):
         for y in range(len(board)):
             # if the first letter of the guess is found, save the position
@@ -31,13 +34,15 @@ def boggle_checker(board, guess):
         y = position[1]
         # Mark the first letter so that it can't be used again
         board[x][y] = "x"
-        a = checkLetter(getAdjPositions(x, y, len(board)), board, count, guess, guess[0])
+        a = checkLetter(get_adj_positions(x, y, len(board)), board, count, guess, guess[0])
         if a == True:
             return True
     return False
 
 
-def getAdjPositions(x, y, max):
+def get_adj_positions(x, y, max):
+
+
     """" Return all legal positions adjoining the x, y coordinate given"""
     adj_pos = []
     # Generate all coordinates of all squares surrounding given position
@@ -61,7 +66,7 @@ def checkLetter(position, board, count, guess, curr_word):
             if count + 1 < len(guess):
                 count += 1
                 # call this function again with updated variables
-                checkLetter(getAdjPositions(x, y, len(board)), board, count, guess, curr_word)
+                checkLetter(get_adj_positions(x, y, len(board)), board, count, guess, curr_word)
             else:
                 # word is found, return True to exit function
                 print(curr_word)
