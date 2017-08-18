@@ -69,9 +69,8 @@ def checkLetter(position, board, count, guess, curr_word):
 
 def board_generate():
     """" Random board generator for testing purposes"""
+    board_size = random.randint(3, size)
 
-    # Change these numbers to vary the board size possibilities
-    board_size = random.randint(5, 50)
     rows = ""
     for i in range(board_size):
         rows += " "
@@ -83,15 +82,13 @@ def board_generate():
 
 def guess_generate():
     """" Generate a random string for testing purposes"""
-
-    # Change these numbers to var guess length possibilities
-    length = random.randint(2, 2)
     guess = ""
+    length = random.randint(2,3)
     for i in range(length):
         guess += alphabet[random.randint(0, 25)]
     return guess
 
 
 
-for i in range(100):
-    print(boggle_checker(board_generate(), guess_generate()))
+# for i in range(100):
+#     print(boggle_checker(board_generate(5), guess_generate()))
