@@ -1,6 +1,7 @@
 import unittest
 from boggle2 import boggle_checker, board_generate, guess_generate, get_adj_positions
 
+
 class PrimesTestCase(unittest.TestCase):
     """Tests for `boggle2.py."""
 
@@ -14,7 +15,7 @@ class PrimesTestCase(unittest.TestCase):
 
     def test_is_a_letter_used_twice(self):
         """"Is it possible that a letter will be reused?"""
-        self.assertFalse(boggle_checker([["A", "A", "A"],["A", "B", "A"],["A", "A", "A"]], "ABA"))
+        self.assertFalse(boggle_checker([["A", "A", "A"],["A", "B", "A"],["A", "A", "A"]], "BAB"))
 
     def test_will_negative_coordinates_be_returned(self):
         """given an illegal (negative) position will the function return illegal positions"""

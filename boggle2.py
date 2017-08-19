@@ -1,7 +1,6 @@
 import random
 alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-
 def boggle_checker(board, guess):
     """"Return true is guess is a word on the board"""
 
@@ -12,7 +11,6 @@ def boggle_checker(board, guess):
     print(guess)
     for row in board:
         print(row)
-
 
     """ Try turning this into a lambda function"""
     for x in range(len(board)):
@@ -41,7 +39,6 @@ def boggle_checker(board, guess):
 
 
 def get_adj_positions(x, y, max):
-
 
     """" Return all legal positions adjoining the x, y coordinate given"""
     adj_pos = []
@@ -72,9 +69,10 @@ def checkLetter(position, board, count, guess, curr_word):
                 print(curr_word)
                 return True
 
+
 def board_generate():
     """" Random board generator for testing purposes"""
-    board_size = random.randint(3, size)
+    board_size = random.randint(3, 7)
 
     rows = ""
     for i in range(board_size):
@@ -85,6 +83,7 @@ def board_generate():
     board = list(map(list, rows))
     return(board)
 
+
 def guess_generate():
     """" Generate a random string for testing purposes"""
     guess = ""
@@ -94,6 +93,6 @@ def guess_generate():
     return guess
 
 
-
-# for i in range(100):
-#     print(boggle_checker(board_generate(5), guess_generate()))
+for i in range(10):
+    # print(boggle_checker(board_generate(), guess_generate()))
+    print(boggle_checker(board_generate(), "AB"))
