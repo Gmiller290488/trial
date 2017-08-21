@@ -70,17 +70,11 @@ def checkLetter(position, board, count, guess, curr_word):
                 return True
 
 
+
 def board_generate():
     """" Random board generator for testing purposes"""
     board_size = random.randint(3, 7)
-
-    rows = ""
-    for i in range(board_size):
-        rows += " "
-        for i in range(board_size):
-            rows += (alphabet[random.randint(0, 25)])
-    rows = rows.split()
-    board = list(map(list, rows))
+    board = [[alphabet[random.randint(0, 25)] for a in range(board_size)] for b in range(board_size)]
     return(board)
 
 
