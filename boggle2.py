@@ -3,7 +3,6 @@ alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 def boggle_checker(board, guess):
     """"Return true is guess is a word on the board"""
-
     count = 0
     positions = []
 
@@ -18,7 +17,6 @@ def boggle_checker(board, guess):
             # if the first letter of the guess is found, save the position
             if board[x][y] == guess[count]:
                 positions.append([x, y])
-                print("Letter found at ", x, ", ", y)
     # if the first letter was found increment count
     # count is used as index for which letter in guess we are searching for
     if positions != []:
@@ -55,7 +53,6 @@ def checkLetter(position, board, count, guess, curr_word):
         x = item[0]
         y = item[1]
         if board[x][y] == guess[count]:
-            print("Letter found at ", x,", ", y)
             # add the letter found to our current word variable
             curr_word += guess[count]
             # mark the position so it can't be used again
@@ -73,20 +70,18 @@ def checkLetter(position, board, count, guess, curr_word):
 
 def board_generate():
     """" Random board generator for testing purposes"""
-    board_size = random.randint(3, 7)
+    board_size = random.randint(3, 70)
     board = [[alphabet[random.randint(0, 25)] for a in range(board_size)] for b in range(board_size)]
     return(board)
 
 
 def guess_generate():
     """" Generate a random string for testing purposes"""
-    guess = ""
     length = random.randint(2,3)
-    for i in range(length):
-        guess += alphabet[random.randint(0, 25)]
+    guess = [alphabet[random.randint(0, 25)] for i in range(0, length)]
+    guess = ''.join(guess)
     return guess
 
 
-for i in range(10):
-    # print(boggle_checker(board_generate(), guess_generate()))
-    print(boggle_checker(board_generate(), "AB"))
+
+
