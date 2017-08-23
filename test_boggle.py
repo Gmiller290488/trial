@@ -17,10 +17,6 @@ class PrimesTestCase(unittest.TestCase):
         """"Is it possible that a letter will be reused?"""
         self.assertFalse(boggle_checker([["A", "A", "A"],["A", "B", "A"],["A", "A", "A"]], "BAB"))
 
-    def test_will_negative_coordinates_be_returned(self):
-        """given an illegal (negative) position will the function return illegal positions"""
-        self.assertTrue(get_adj_positions(-3, -3, 3) == [])
-
     def test_will_coordinates_be_returned_off_the_board(self):
         """given an illegal (positive) position will the function return illegal positions?"""
         self.assertTrue(get_adj_positions(5, 5, 3) == [])
@@ -37,6 +33,17 @@ class PrimesTestCase(unittest.TestCase):
         """given a centre position will the function return 8 positions?"""
         self.assertTrue((len(get_adj_positions(1, 1, 3))) == 8)
 
+    def test_will_given_true_examples_return_true(self):
+        """ Given the example board and correct answers will the function return true? """
+        guesses = ["BINGO", "LINGO", "ILNBIA"]
+        for guess in guesses:
+            self.assertTrue(boggle_checker([["I","L","A","W"],["B","N","G","E"], ["I","U","A","O"],["A","S","R","L"]], guess))
 
-if __name__ == '__main__':
-    unittest.main()
+    def test_will_given_false_examples_return_false(self):
+        """ Given the example board and wrong answers will the function return false? """
+        guesses = ["BUNGIE", "BINS", "SINUS"]
+        for guess in guesses:
+            self.assertFalse(
+                boggle_checker([["I", "L", "A", "W"], ["B", "N", "G", "E"], ["I", "U", "A", "O"], ["A", "S", "R", "L"]],
+                               guess))
+

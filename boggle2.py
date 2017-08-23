@@ -1,10 +1,13 @@
-import random
+import random, unittest, test_boggle
 alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 def boggle_checker(board, guess):
+    '''  Given a 2D array which is a Boggle board, return True if the second arguement is a valid word
+     on the Boggle board'''
 
-    x = -1
-    y = -1
+    # Set the x, y coordinates to negative numbers for the first iteration of get_adj_positions
+    x = -10
+    y = -10
     curr_word = ""
     count = 0
 
@@ -13,29 +16,30 @@ def boggle_checker(board, guess):
     for row in board:
         print(row)
 
-    a = checkLetter(get_adj_positions(x, y, len(board)), board, count, guess, curr_word)
-    if a == True:
+    # if checkLetter comes back True the word is found and we return True.
+    if checkLetter(get_adj_positions(x, y, len(board)), board, count, guess, curr_word):
         return True
+    # Else the word isn't a legal word on this board so return False
     return False
 
 
 def board_marker(board, x, y):
     """" Mark the position found with an x so it can't be checked twice """
-
     board[x][y] = "x"
     return board
 
 
 def get_adj_positions(x, y, max):
-    """" Return all legal positions adjoining the x, y coordinate given"""
+    """" Return all legal positions adjoining the x, y coordinate given or return all positions
+    if it is the first time being called """
 
     adj_pos = []
-    if (x or y == -1):
+    if (x == -10) or (y == -10):
         x = 0
         y = 0
         for x, y in [(x + i, y + j) for i in range(0, max) for j in range(0, max)]:
             adj_pos.append([x, y])
-        print(adj_pos)
+
         return adj_pos
     else:
         # Generate all coordinates of all squares surrounding given position
@@ -43,6 +47,7 @@ def get_adj_positions(x, y, max):
             adj_pos.append([x, y])
         # Remove any coordinates that are not on the board
         adj_pos = list(filter(lambda x_y: -1 < x_y[0] < max and -1 < x_y[1] < max, adj_pos))
+
         return adj_pos
 
 
@@ -54,14 +59,11 @@ def checkLetter(position, board, count, guess, curr_word):
     for item in position:
         x = item[0]
         y = item[1]
-        print("Looking for " + (guess[count]))
         if board[x][y] == guess[count]:
             # add the letter found to our current word variable
             curr_word += guess[count]
             if count + 1 < len(guess):
                 # call this function again with updated variables
-                print("the current word is: " + curr_word)
-                print("count is " + str(count+1) + "and length of guess is " + str(len(guess)))
                 return checkLetter(get_adj_positions(x, y, len(board)), board_marker(board, x, y), count+1, guess, curr_word)
             else:
                 # word is found, return True to exit function
@@ -73,7 +75,7 @@ def board_generate():
     """" Random board generator for testing purposes"""
 
     board_size = random.randint(3, 7)
-    board = [[alphabet[random.randint(0, 25)] for a in range(board_size)] for b in range(board_size)]
+    board = [[alphabet[random.randint(0, 25)] in range(board_size)] in range(board_size)]
     return(board)
 
 
@@ -87,5 +89,7 @@ def guess_generate():
     return guess
 
 
-for i in range(1):
-     print(boggle_checker([ ["I","L", "I"],["C","N", "I"], ["C", "D", "L"] ], "IL"))
+if __name__ == '__main__':
+    suite = unittest.TestLoader().loadTestsFromModule(test_boggle)
+    unittest.TextTestRunner(verbosity=2).run(suite)
+    
