@@ -1,4 +1,7 @@
-import random, unittest, test_boggle
+import random
+import unittest
+import test_boggle
+
 alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 def boggle_checker(board, guess):
@@ -75,7 +78,7 @@ def board_generate():
     """" Random board generator for testing purposes"""
 
     board_size = random.randint(3, 7)
-    board = [[alphabet[random.randint(0, 25)] in range(board_size)] in range(board_size)]
+    board = [[alphabet[random.randint(0, 25)] for a in range(board_size)] for b in range(board_size)]
     return(board)
 
 
@@ -92,4 +95,3 @@ def guess_generate():
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromModule(test_boggle)
     unittest.TextTestRunner(verbosity=2).run(suite)
-    

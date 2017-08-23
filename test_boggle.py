@@ -1,5 +1,5 @@
 import unittest
-from boggle2 import boggle_checker, board_generate, guess_generate, get_adj_positions
+from boggle2 import boggle_checker, get_adj_positions
 
 
 class PrimesTestCase(unittest.TestCase):
